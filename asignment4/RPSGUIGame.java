@@ -1,3 +1,8 @@
+// Name:RPSGUI Game
+// Author: Yongzheng He
+// Date: 04-26-2017
+// Description: This is a GUI game file for rock paper and scissors game. You can clicked to choose any move you want to play, and the opposize will generate a random move to compare with you. The scores will update and show after every round. 
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -22,15 +27,11 @@ public class RPSGUIGame extends JFrame {
 
 		// initializes the window
 		super("Rock, Paper, Scissors, Go!");
-		setSize(350, 300);
+		setSize(500, 300);
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		contentPane.setBackground(Color.black);
-		
-
 		game = new RPS();
-
-
 		// creates the labels for displaying the computer and user's move;
 		// the images for the moves and the outcome of a match-up will be displayed
 		// in a single panel
@@ -108,15 +109,27 @@ public class RPSGUIGame extends JFrame {
 		public void actionPerformed(ActionEvent event) {
 			if(event.getSource()==rockButton){
 				game.setUMoves(0);
+				userPlay.setIcon(rockImage);
 			}
 			if(event.getSource()==paperButton){
 				game.setUMoves(1);
+				userPlay.setIcon(paperImage);
 			}
 			if(event.getSource()==scissorsButton){
 				game.setUMoves(2);
+				userPlay.setIcon(scissorsImage);
 			}
-			game.generateComputerPlay();
+			userPlay.setText("Your moves!");
+			int temp = game.generateComputerPlay();
+			if(temp==0){ compPlay.setIcon(rockImage);}
+			if(temp==1){ compPlay.setIcon(paperImage);}
+			if(temp==2){ compPlay.setIcon(scissorsImage);}
+			compPlay.setText("Computer moves!");
 			game.findWinner();
+			statusC.setText("Computer Wins: " + game.getCWins());
+			statusU.setText("User Wins: " + game.getUWins());
+			statusT.setText("Ties: " + game.getTies());
+
 		}
 	}
 

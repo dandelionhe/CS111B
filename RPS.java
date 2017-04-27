@@ -16,7 +16,7 @@ public RPS(){
   public int getCWins(){ return this.cWins;}
   public int getUWins(){ return this.uWins;}
   public int getTies(){  return this.ties;}
-  public String getSummary(){return String.format("");}
+  public Moves getMoves(){return this.userMoves;}
 
   // get user moves from GUI, and pass into the game
 public void setUMoves(int num){
